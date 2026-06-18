@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import { getResourceUrl, normalizeListResponse } from './api'
 
 function Activities() {
-  const [activities, setActivities] = useState<unknown[]>([])
-  const [pageInfo, setPageInfo] = useState<unknown | null>(null)
-  const [error, setError] = useState<string | null>(null)
+  const [activities, setActivities] = useState([])
+  const [pageInfo, setPageInfo] = useState(null)
+  const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -49,14 +49,14 @@ function Activities() {
             </thead>
             <tbody>
               {activities.map((activity, index) => {
-                const item = activity as Record<string, unknown>
+                const item = activity || {}
                 return (
                   <tr key={index}>
-                    <td>{item.type as string ?? '—'}</td>
+                    <td>{item.type ?? '—'}</td>
                     <td>{String(item.user ?? '—')}</td>
-                    <td>{item.distanceKm as number ?? '—'}</td>
-                    <td>{item.durationMinutes as number ?? '—'}</td>
-                    <td>{item.calories as number ?? '—'}</td>
+                    <td>{item.distanceKm ?? '—'}</td>
+                    <td>{item.durationMinutes ?? '—'}</td>
+                    <td>{item.calories ?? '—'}</td>
                     <td>{new Date(String(item.date ?? '')).toLocaleString()}</td>
                   </tr>
                 )

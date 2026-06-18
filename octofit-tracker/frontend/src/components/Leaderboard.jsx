@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import { getResourceUrl, normalizeListResponse } from './api'
 
 function Leaderboard() {
-  const [entries, setEntries] = useState<unknown[]>([])
-  const [pageInfo, setPageInfo] = useState<unknown | null>(null)
-  const [error, setError] = useState<string | null>(null)
+  const [entries, setEntries] = useState([])
+  const [pageInfo, setPageInfo] = useState(null)
+  const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -49,14 +49,14 @@ function Leaderboard() {
             </thead>
             <tbody>
               {entries.map((entry, index) => {
-                const item = entry as Record<string, unknown>
+                const item = entry || {}
                 return (
                   <tr key={index}>
                     <td>{String(item.entityRef ?? '—')}</td>
-                    <td>{item.entityType as string ?? '—'}</td>
-                    <td>{item.rank as number ?? '—'}</td>
-                    <td>{item.score as number ?? '—'}</td>
-                    <td>{item.category as string ?? '—'}</td>
+                    <td>{item.entityType ?? '—'}</td>
+                    <td>{item.rank ?? '—'}</td>
+                    <td>{item.score ?? '—'}</td>
+                    <td>{item.category ?? '—'}</td>
                     <td>{new Date(String(item.updatedAt ?? '')).toLocaleString()}</td>
                   </tr>
                 )

@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import { getResourceUrl, normalizeListResponse } from './api'
 
 function Users() {
-  const [users, setUsers] = useState<unknown[]>([])
-  const [pageInfo, setPageInfo] = useState<unknown | null>(null)
-  const [error, setError] = useState<string | null>(null)
+  const [users, setUsers] = useState([])
+  const [pageInfo, setPageInfo] = useState(null)
+  const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -48,12 +48,12 @@ function Users() {
             </thead>
             <tbody>
               {users.map((user, index) => {
-                const item = user as Record<string, unknown>
+                const item = user || {}
                 return (
                   <tr key={index}>
-                    <td>{item.name as string ?? '—'}</td>
-                    <td>{item.email as string ?? '—'}</td>
-                    <td>{item.role as string ?? '—'}</td>
+                    <td>{item.name ?? '—'}</td>
+                    <td>{item.email ?? '—'}</td>
+                    <td>{item.role ?? '—'}</td>
                     <td>{String(item.team ?? '—')}</td>
                     <td>{new Date(String(item.createdAt ?? '')).toLocaleString()}</td>
                   </tr>
