@@ -1,3 +1,4 @@
+import cors from 'cors'
 import express from 'express'
 import mongoose from 'mongoose'
 import usersRouter from './routes/users'
@@ -14,6 +15,7 @@ const API_URL = process.env.CODESPACE_NAME
   ? `https://${process.env.CODESPACE_NAME}-8000.app.github.dev`
   : `http://${HOST}:${PORT}`
 
+app.use(cors({ origin: true }))
 app.use(express.json())
 app.use('/api/users', usersRouter)
 app.use('/api/teams', teamsRouter)

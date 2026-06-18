@@ -1,4 +1,5 @@
-export const VITE_CODESPACE_NAME = import.meta.env.VITE_CODESPACE_NAME
+// export const VITE_CODESPACE_NAME = import.meta.env.VITE_CODESPACE_NAME
+export const VITE_CODESPACE_NAME = 'crispy-space-chainsaw-p4x7vrpxxgc75r7'
 
 export const BASE_API_URL = VITE_CODESPACE_NAME
   ? `https://${VITE_CODESPACE_NAME}-8000.app.github.dev/api`
