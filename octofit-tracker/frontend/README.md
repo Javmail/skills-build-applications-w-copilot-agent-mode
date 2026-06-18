@@ -7,6 +7,18 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
+## Environment variables
+
+This application uses Vite environment variables to configure the backend API URL for Codespaces deployments.
+
+Create a local env file such as `.env.local` and add:
+
+```env
+VITE_CODESPACE_NAME=your-codespace-name
+```
+
+When `VITE_CODESPACE_NAME` is defined, the app builds API requests against `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api`. If the variable is not set, the app safely falls back to `http://localhost:8000/api`.
+
 ## React Compiler
 
 The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
